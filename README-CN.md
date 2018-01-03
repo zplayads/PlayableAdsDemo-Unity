@@ -6,7 +6,7 @@
   4. 安装可玩SDK
 
 ## 概述
-    1. 面向人人群，本产品主要面向需要在Unity产品中接入可玩广告SDK的开发者
+    1. 面向人群，本产品主要面向需要在Unity产品中接入可玩广告SDK的开发者
     2. 开发环境配置
         - iOS:
             Xcode 7.0或更高版本
@@ -38,31 +38,34 @@
 ## 导入PlayableAds.unitypackage
 
 ### 1. 导入可玩插件包
-Assets->Import Package -> Custom Package...
+Android与iOS使用同一个插件包，导入步骤为Assets->Import Package -> Custom Package...
+
+点此下载[PlayableAds.unitypackage](/PlayableAds.unitypackage)
+
 ![image](/images/image03.png)
-PlayableAds.unitypackage[资源位置](/PlayableAds.unitypackage)
 
 ### 2. 选择下载好的PlayableAds插件包，双击打开
 ![image](/images/image04.png)
 
 ### 3. 按需导入相关文件
-a. 导入全部文件，其中包括iOS插件与Android插件，如图：
+a. 如果您既需要Android又需要iOS，导入全部文件（其中包括iOS插件与Android插件），如图：
 ![image](/images/image05.png)
 
-b. 只导入iOS插件，如图：
+b. 如果您只需要iOS，只导入iOS插件，如图：
 ![image](/images/image20.png)
 
-c. 只导入Android插件，如图：
+c. 如果您只需要Android，只导入Android插件，如图：
 ![image](/images/image21.png)
 
-如果出现文件名称冲突，请手动修改文件名与类名，只要确保调用时一致就可以。
+*如果出现文件名称冲突，请手动修改文件名与类名，只要确保调用时一致就可以。
 
-### 4. 插件API说明
-#### a. iOS插件API说明
+### 4. 添加代码
+#### a. 添加iOS代码
  - 请求广告
     ``` c#
     // APP_ID为你在ZPLAY Ads平台申请的应用ID
     // AD_UNIT_ID为你在ZPLAY Ads平台申请的广告位ID
+
     PlayableAdsBridge.RequestAd(gameObjectName, APP_ID, AD_UNIT_ID);
     ```
  - 判断广告是否加载完成
@@ -92,7 +95,7 @@ c. 只导入Android插件，如图：
     }
     ```
 
-#### b. Android插件API说明
+#### b. 添加Android代码
  - 初始化SDK
     ``` c#
     // APP_ID为你在ZPLAY Ads平台申请的应用ID
@@ -154,7 +157,12 @@ pod install --repo-update
 ![image](/images/image17.png)
 注意：此处打开的是 **.xcworkspace** 文件，而非.xcodeproj
 ### 5. 预览demo
-完整流程是点击“Request”开始请求广告，广告加载完成后提示“PlayableAdsDidLoad”，此时点击“Present”展示广告，广告展示完成后，点击“X”关闭广告，此时接收到“PlayableAdsDidRewardUser”消息。
+完整流程如下：
+* 点击“Request”开始请求广告
+* 广告加载完成后提示“PlayableAdsDidLoad”
+* 此时点击“Present”展示广告
+* 广告展示完成后，点击“X”关闭广告，此时接收到“PlayableAdsDidRewardUser”消息。
+
 ![image](/images/image18.jpg)
 
-如有疑问，请参考示例程序或发送邮件至liguodong@zplay.cn
+接入过程中若有疑问，请参考示例程序或发送邮件至service@zplayads.com
