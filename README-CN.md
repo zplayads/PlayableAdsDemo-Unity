@@ -57,7 +57,7 @@ b. 如果您只需要iOS，只导入iOS插件，如图：
 c. 如果您只需要Android，只导入Android插件，如图：
 ![image](/images/image21.png)
 
-*如果出现文件名称冲突，请手动修改文件名与类名，只要确保调用时一致就可以。
+注：如果出现文件名称冲突，请手动修改文件名与类名，只要确保调用时一致就可以。
 
 ### 4. 添加代码
 #### a. 添加iOS代码
@@ -135,7 +135,12 @@ c. 如果您只需要Android，只导入Android插件，如图：
 
 1.自定义事件要与广告请求时的GameObject同属一个，如本示例的GameObject均为Main Camera。
 
-2.发布应用时不要使用Demo中的应用id和广告位id，Demo中的id为测试id，收益为0。
+2.您在测试中可使用如下id进行测试，测试id不会产生收益，应用上线时请使用您申请的正式id。
+
+|操作系统|  App_ID  |  Ad_Unit_id|
+|--------|----------|------------|
+|Android |5C5419C7-A2DE-88BC-A311-C3E7A646F6AF|3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC|
+|iOS|A650AB0D-7BFC-2A81-3066-D3170947C3DA|BAE5DAAC-04A2-2591-D5B0-38FA846E45E7|
 
 ## 安装可玩SDK
 以下为iOS 可玩SDK的安装步骤，Android可玩SDK已经包含在插件包里了，不需要额外安装。
