@@ -143,4 +143,17 @@ extern "C"
         }
         return NO;
     }
+    
+    void _autoload(const bool autoload) {
+        if(delegateObj != nil && delegateObj.pAd != nil){
+            delegateObj.pAd.autoLoad = autoload;
+        }
+    }
+    
+    Boolean _isAutoload(){
+        if(delegateObj != nil && delegateObj.pAd != nil){
+            return delegateObj.pAd.autoLoad;
+        }
+        return NO;
+    }
 }
