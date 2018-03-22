@@ -156,9 +156,8 @@ c. 如果您只需要Android，只导入Android插件，如图：
 以下为iOS 可玩SDK的安装步骤，Android可玩SDK已经包含在插件包里了，不需要额外安装。
 ### 1. 进入Unity导出的xcode项目根目录下，初始化pod，如示例中的iOSProj目录
 ![image](/images/image14.png)
-### 2. 初始化pod后会生成Podfile文件，在此文件下添加可玩sdk，如下
-![image](/images/image15.png)
-根据项目的不同，这个文件可能有所不同，只要确保将```pod 'PlayableAds', '~>2.0.1'```添加到Podfile中即可。
+### 2. 初始化pod后会生成Podfile文件，在此文件下添加可玩sdk
+确保将```pod 'PlayableAds', '~>2.0.5'```添加到Podfile中即可。
 注意：可玩广告SDK最低支持ios8.0，
 
 ### 3. 安装可玩sdk
