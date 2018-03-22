@@ -16,9 +16,18 @@ namespace PlayableAds.API {
 		[DllImport("__Internal")]
 		private static extern bool _isReady();
 
+		[DllImport("__Internal")]
+		private static extern void _autoload(bool autoload);
+
+		[DllImport("__Internal")]
+		private static extern bool _isAutoload();
+
+		private static bool isAutoload = true;
+
 		public static void RequestAd(string gameObjName, string appId, string adUnitId)
 		{
 			_loadAd(gameObjName, appId, adUnitId);
+			_autoload(isAutoload);
 		}
 
 		public static void PresentAd()
@@ -29,6 +38,16 @@ namespace PlayableAds.API {
 		public static bool IsReady()
 		{
 			return _isReady();
+		}
+
+		public static void Autoload(bool autoload)
+		{
+			isAutoload = autoload;
+			_autoload(isAutoload);
+		}
+
+		public static bool IsAutoload(){
+			return _isAutoload();
 		}
 
 	}

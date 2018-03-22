@@ -33,7 +33,10 @@ public class CameraController : MonoBehaviour, IPlayableListener, IPlayableAdapt
 		cbInfo.text = "request ad";
 
 		#if UNITY_IOS
-		PlayableAdsBridge.RequestAd(gameObject.name, iOSDemoAppId, iOSDemoAdUnitId);
+		if (!PlayableAdsBridge.IsAutoload())
+		{
+			PlayableAdsBridge.RequestAd(gameObject.name, iOSDemoAppId, iOSDemoAdUnitId);
+		}
 		#endif
 
 		#if UNITY_ANDROID

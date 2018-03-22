@@ -38,7 +38,7 @@
 ## 导入PlayableAds.unitypackage
 
 ### 1. 导入可玩插件包
-Android与iOS使用同一个插件包，导入步骤为Assets->Import Package -> Custom Package...
+Android与iOS使用同一个插件包，导入步骤为Assets-> Import Package -> Custom Package...
 
 点此下载[PlayableAds.unitypackage](/PlayableAds.unitypackage)
 
@@ -76,6 +76,16 @@ c. 如果您只需要Android，只导入Android插件，如图：
     ``` c#
     PlayableAdsBridge.PresentAd();
     ```
+ - 设置自动加载下一条广告
+ 	``` c#
+	PlayableAdsBridge.Autoload(bool);
+	```
+	默认为自动加载，即经首次请求广告后，后续SDK会自动加载下一条广告，不需要再次调用请求方法。
+
+ - 判断广告是否自动加载下一条广告
+ 	``` c#
+	PlayableAdsBridge.IsAutoload();
+	```
  - 自定义事件
     ```c#
     // 位置：Demo/Assets/Scripts/PlayableAdsBridge.IPlayableListener
@@ -148,12 +158,12 @@ c. 如果您只需要Android，只导入Android插件，如图：
 ![image](/images/image14.png)
 ### 2. 初始化pod后会生成Podfile文件，在此文件下添加可玩sdk，如下
 ![image](/images/image15.png)
-根据项目的不同，这个文件可能有所不同，只要确保将```pod 'PlayableAds'```添加到Podfile中即可。
+根据项目的不同，这个文件可能有所不同，只要确保将```pod 'PlayableAds', '~>2.0.1'```添加到Podfile中即可。
 注意：可玩广告SDK最低支持ios8.0，
 
 ### 3. 安装可玩sdk
 ```
-pod install --repo-update
+pod install
 ```
 ![image](/images/image16.png)
 看到红线圈出的部分代表可玩广告SDK安装成功，此时可以运行项目查看运行效果了，步骤如下
