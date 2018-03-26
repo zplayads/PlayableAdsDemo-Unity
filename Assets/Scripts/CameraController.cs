@@ -5,13 +5,13 @@ using PlayableAds.API;
 public class CameraController : MonoBehaviour, IPlayableListener, IPlayableAdapterListener
 {
 	#region iOS Test ID
-	private readonly string iOSDemoAppId = "iOSDemoApp";
-	private readonly string iOSDemoAdUnitId = "iOSDemoAdUnit";
+	private readonly string iOSDemoAppId = "A650AB0D-7BFC-2A81-3066-D3170947C3DA";
+	private readonly string iOSDemoAdUnitId = "BAE5DAAC-04A2-2591-D5B0-38FA846E45E7";
 	#endregion
 
 	#region Android Test ID
-	private readonly string androidDemoAppId = "androidDemoApp";
-	private readonly string androidDemoAdUnitId = "androidDemoAdUnit";
+	private readonly string androidDemoAppId = "5C5419C7-A2DE-88BC-A311-C3E7A646F6AF";
+	private readonly string androidDemoAdUnitId = "3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC";
 	#endregion
 
 	public Text cbInfo;
@@ -25,6 +25,8 @@ public class CameraController : MonoBehaviour, IPlayableListener, IPlayableAdapt
 
 		#if UNITY_ANDROID
 		PlayableAdsAdapter.Init(gameObject.name, androidDemoAppId);
+		PlayableAdsAdapter.AutoloadAd(true);
+		PlayableAdsAdapter.CacheCountPerUnitId(1);
 		#endif
 	}
 

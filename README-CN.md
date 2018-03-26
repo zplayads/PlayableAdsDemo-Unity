@@ -111,6 +111,11 @@ c. 如果您只需要Android，只导入Android插件，如图：
     // APP_ID为你在ZPLAY Ads平台申请的应用ID
     PlayableAdsAdapter.Init(gameObjectName, APP_ID);
     ```
+ - 设置自动请求
+    ``` c#
+    // 自动请求下个广告
+    PlayableAdsAdapter.AutoloadAd(bool);
+    ```
  - 请求广告
     ``` c#
     PlayableAdsAdapter.RequestAd(AD_UNIT_ID);

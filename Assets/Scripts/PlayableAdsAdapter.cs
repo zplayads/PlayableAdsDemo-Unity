@@ -20,6 +20,24 @@ namespace PlayableAds.API {
 			}
 		}
 
+		public static void AutoloadAd(bool auto) {
+			using(AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
+				using(AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity")) {
+					AndroidJavaClass sec = new AndroidJavaClass("com.zplay.playable.playableadsplugin.PlayableAdsAdapter");
+					sec.CallStatic("AutoloadAd", auto);
+				}
+			}
+		}
+
+		public static void CacheCountPerUnitId(int count) {
+			using(AndroidJavaClass jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer")) {
+				using(AndroidJavaObject jo = jc.GetStatic<AndroidJavaObject>("currentActivity")) {
+					AndroidJavaClass sec = new AndroidJavaClass("com.zplay.playable.playableadsplugin.PlayableAdsAdapter");
+					sec.CallStatic("CacheCountPerUnitId", count);
+				}
+			}
+		}
+
 		public static void RequestAd(string adUnitId)
 		{
 			if(objectName == null) {
