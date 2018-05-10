@@ -48,30 +48,6 @@
     UnitySendMessage(gameObject, "DidFailToLoadWithError", cString);
 }
 
-/// Tells the delegate that ad will be presented on the screen.
-- (void)playableAdsWillPresentScreen:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsWillPresentScreen";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsWillPresentScreen gameObject nil");
-        return;
-    }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
-/// Tells the delegate that ad did present on the screen.
-- (void)playableAdsDidPresentScreen:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsDidPresentScreen";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsDidPresentScreen gameObject nil");
-        return;
-    }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
 /// Tells the delegate that user starts playing the ad.
 - (void)playableAdsDidStartPlaying:(PlayableAds *)ads{
     NSString *inStr = @"playableAdsDidStartPlaying";
@@ -81,7 +57,7 @@
         printf("pa=> playableAdsDidStartPlaying gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidStartPlaying", cString);
 }
 
 /// Tells the delegate that the ad is being fully played.
@@ -93,7 +69,7 @@
         printf("pa=> playableAdsDidEndPlaying gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidEndPlaying", cString);
 }
 
 /// Tells the delegate that the landing page did present on the screen.
@@ -105,19 +81,7 @@
         printf("pa=> playableAdsDidPresentLandingPage gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
-/// Tells the delegate that the ad will be animated off the screen.
-- (void)playableAdsWillDismissScreen:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsWillDismissScreen";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsWillDismissScreen gameObject nil");
-        return;
-    }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidPresentLandingPage", cString);
 }
 
 /// Tells the delegate that the ad did animate off the screen.
@@ -129,43 +93,19 @@
         printf("pa=> playableAdsDidDismissScreen gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidDismissScreen", cString);
 }
 
-/// Tells the delegate that the ad is clicked from landing page.
-- (void)playableAdsDidClickFromLandingPage:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsDidClickFromLandingPage";
+/// Tells the delegate that the ad is clicked
+- (void)playableAdsDidClick:(PlayableAds *)ads{
+    NSString *inStr = @"playableAdsDidClick";
     const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
     const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
     if (!gameObject){
-        printf("pa=> playableAdsDidClickFromLandingPage gameObject nil");
+        printf("pa=> playableAdsDidClick gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
-/// Tells the delegate that the ad is clicked from video page.
-- (void)playableAdsDidClickFromVideoPage:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsDidClickFromVideoPage";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsDidClickFromVideoPage gameObject nil");
-        return;
-    }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
-/// Tells the delegate that it will leaven the application, most likely caused by user click.
-- (void)playableAdsWillLeaveApplication:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsWillLeaveApplication";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsWillLeaveApplication gameObject nil");
-        return;
-    }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidClick", cString);
 }
 
 @end
