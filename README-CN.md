@@ -90,18 +90,29 @@ c. 如果您只需要Android，只导入Android插件，如图：
     ```c#
     // 位置：Demo/Assets/Scripts/PlayableAdsBridge.IPlayableListener
     interface IPlayableListener{
+      	// 奖励
+        void PlayableAdsDidRewardUser(string msg);
 
-        // 广告已经加载完毕，可以展示广告了
-        void PlayableAdsDidLoad(string msg)
+        // 广告加载成功
+        void PlayableAdsDidLoad(string msg);
 
-        // 广告加载失败，可根据error信息查找原因
-        void DidFailToLoadWithError(string error)
+        // 广告加载失败
+        void DidFailToLoadWithError(string error);
 
-        // 此时，用户已经看完整个广告了，可以下发奖励
-        void PlayableAdsDidRewardUser(string msg)
+        // 用户开始播放广告
+        void PlayableAdsDidStartPlaying(string msg);
 
-        // 可玩SDK其它回调信息，详情查看msg
-        void PlayableAdFeedBack(string msg)
+        // 广告播放完成
+        void PlayableAdsDidEndPlaying(string msg);
+
+        // 展示广告落地页
+        void PlayableAdsDidPresentLandingPage(string msg);
+
+        // 关闭广告，广告消失
+        void PlayableAdsDidDismissScreen(string msg);
+
+        // 广告被点击
+        void PlayableAdsDidClick(string msg);
     }
     ```
 

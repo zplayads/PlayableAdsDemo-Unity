@@ -70,32 +70,43 @@ Note: If there's a file name conflict, you can modify the file name or the class
 
     PlayableAdsBridge.RequestAd(gameObjectName, APP_ID, AD_UNIT_ID);
     ```
--  Ad ready for display?
+- Ad ready for display?
     ``` c#
     // You can judge the availability of an ad by this callback. Then you’ll be able to manage your game’s settings according to the ad being ready or not.
 
     PlayableAdsBridge.IsReady();
     ```
--  Show Ad
+- Show Ad
     ``` c#
     PlayableAdsBridge.PresentAd();
     ```
--  Custom Event
+- Custom Event
     ```c#
     // Place: Demo/Assets/Scripts/PlayableAdsBridge.IPlayableListener
     interface IPlayableListener{
+      	// Reward
+        void PlayableAdsDidRewardUser(string msg);
 
-        // Tells the delegate that succeeded to load ad, you can show ad now
-        void PlayableAdsDidLoad(string msg)
+        // ad has been loaded.
+        void PlayableAdsDidLoad(string msg);
 
-        // Tells the delegate that failed to load ad, you can find out the reason according error information
-        void DidFailToLoadWithError(string error)
+        // ad load failed
+        void DidFailToLoadWithError(string error);
 
-        // Give reward, use this callback to judge if the reward is available
-        void PlayableAdsDidRewardUser(string msg)
+        // user starts playing the ad.
+        void PlayableAdsDidStartPlaying(string msg);
 
-        // Other callback information, please see msg for more details
-        void PlayableAdFeedBack(string msg)
+        // the ad is being fully played.
+        void PlayableAdsDidEndPlaying(string msg);
+
+        // the landing page did present on the screen.
+        void PlayableAdsDidPresentLandingPage(string msg);
+
+        // the ad did dismiss the screen.
+        void PlayableAdsDidDismissScreen(string msg);
+
+        // the ad is clicked
+        void PlayableAdsDidClick(string msg);
     }
     ```
 
@@ -106,20 +117,20 @@ Note: If there's a file name conflict, you can modify the file name or the class
 
     PlayableAdsAdapter.Init(gameObjectName, APP_ID);
     ```
--  Request Ad 
+- Request Ad 
     ``` c#
     // AD_UNIT_ID: An ID for a specific ad placement within your App, as generated for your Apps within your account on the ZPLAY Ads website.
     PlayableAdsAdapter.RequestAd(AD_UNIT_ID);
     ```
--  Ad ready for display?
+- Ad ready for display?
     ``` c#
     PlayableAdsAdapter.IsReady(AD_UNIT_ID)
     ```
--  Show Ad
+- Show Ad
     ``` c#
     PlayableAdsAdapter.PresentAd(AD_UNIT_ID)
     ```
--  Custom Event
+- Custom Event
     ``` c#
     // Position：Demo/Assets/Scripts/PlayableAdsAdapter.IPlayableAdapterListener
     interface IPlayableAdapterListener{
