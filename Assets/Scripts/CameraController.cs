@@ -83,10 +83,30 @@ public class CameraController : MonoBehaviour, IPlayableListener, IPlayableAdapt
 	{
 		cbInfo.text = "Ad failed to load, info: " + error;
 	}
-
-	public void PlayableAdFeedBack(string msg)
+		
+	public void PlayableAdsDidStartPlaying(string msg)
 	{
-		Debug.Log("PlayableAd other callback: " + msg);
+		cbInfo.text = "ad did start playing";
+	}
+		
+	public void PlayableAdsDidEndPlaying(string msg)
+	{
+		cbInfo.text = "ad did end playing";
+	}
+
+	public void PlayableAdsDidPresentLandingPage(string msg)
+	{
+		cbInfo.text = "ad did present landing page";
+	}
+
+	public void PlayableAdsDidDismissScreen(string msg)
+	{
+		cbInfo.text = "ad did dismiss screen";
+	}
+		
+	public void PlayableAdsDidClick(string msg)
+	{
+		cbInfo.text = "ad did clicked ";
 	}
 
 	#endregion
