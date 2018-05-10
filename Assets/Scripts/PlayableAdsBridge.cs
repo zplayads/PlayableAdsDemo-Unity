@@ -62,19 +62,19 @@ namespace PlayableAds.API {
 		// ad load failed
 		void DidFailToLoadWithError(string error);
 
-		// Tells the delegate that user starts playing the ad.
+		// user starts playing the ad.
 		void PlayableAdsDidStartPlaying(string msg);
 
-		// Tells the delegate that the ad is being fully played.
+		// ad is being fully played.
 		void PlayableAdsDidEndPlaying(string msg);
 
-		// Tells the delegate that the landing page did present on the screen.
+		// the landing page did present on the screen.
 		void PlayableAdsDidPresentLandingPage(string msg);
 
-		// Tells the delegate that the ad did animate off the screen.
+		// the ad did dismiss the screen.
 		void PlayableAdsDidDismissScreen(string msg);
 
-		// Tells the delegate that the ad is clicked
+		// the ad is clicked
 		void PlayableAdsDidClick(string msg);
 	}
 
