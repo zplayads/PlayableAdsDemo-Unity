@@ -116,16 +116,24 @@ public class CameraController : MonoBehaviour, IPlayableListener, IPlayableAdapt
 	public void OnLoadFinished(string msg)
 	{
 		cbInfo.text = "Ad has been loaded, go present it.";
+		Debug.Log(msg);
 	}
 
 	public void OnLoadFailed(string msg)
 	{
 		cbInfo.text = "Ad failed to load, info: " + msg;
+		Debug.Log(msg);
+	}
+
+	public void PlayableAdsInstallButtonClicked(string msg){
+		cbInfo.text = "Ad failed to load, info: " + msg;
+		Debug.Log(msg);
 	}
 
 	public void PlayableAdsIncentive(string msg)
 	{
 		cbInfo.text = "Ad has been presented, giving reward.";
+		Debug.Log(msg);
 	}
 
 	public void PlayableAdsMessage(string msg)

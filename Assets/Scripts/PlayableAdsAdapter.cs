@@ -74,6 +74,8 @@ namespace PlayableAds.API {
 
 		void PlayableAdsIncentive(string msg);
 
+		void PlayableAdsInstallButtonClicked(string msg);
+
 		void PlayableAdsMessage(string msg);
 	}
 }
