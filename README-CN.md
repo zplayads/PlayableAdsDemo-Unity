@@ -15,12 +15,12 @@
             Android 4.0或更高版本
     3. 示例所使用的环境
         - iOS
-            mac：macOS Sierra 10.12.6
+            mac：macOS Sierra 10.13.4
             unity: version 2017.1.1f1 Personal
-            xcode: Version 9.1 (9B55)
-            cocoapods: 1.2.1
+            xcode: Version 9.3
+            cocoapods: 1.4.0
         - Andoird
-            mac：macOS Sierra 10.12.6
+            mac：macOS Sierra 10.13.4
             unity: version 2017.1.1f1 Personal
 
 ## Demo简介
@@ -40,7 +40,7 @@
 ### 1. 导入可玩插件包
 Android与iOS使用同一个插件包，导入步骤为Assets-> Import Package -> Custom Package...
 
-点此下载[PlayableAds.unitypackage](/PlayableAds.unitypackage)
+点此下载[PlayableAds.unitypackage](./PlayableAds.unitypackage)
 
 ![image](./images/image03.png)
 
@@ -50,11 +50,12 @@ Android与iOS使用同一个插件包，导入步骤为Assets-> Import Package -
 ### 3. 按需导入相关文件
 a. 如果您既需要Android又需要iOS，导入全部文件（其中包括iOS插件与Android插件），如图：
 ![image](./images/image05.png)
+注意：示例中android-support-v4.jar与play-services-xxx.aar为可选导入项，如果这些文件与您项目中的文件有冲突，请放心地删除这些文件。
 
-b. 如果您只需要iOS，只导入iOS插件，如图：
+b. 如果您只需要iOS，点击[此处](./PlayableAds-iOS.unitypackage)下载插件包，如图：
 ![image](./images/image20.png)
 
-c. 如果您只需要Android，只导入Android插件，如图：
+c. 如果您只需要Android，点击[此处](./PlayableAds-Android.unitypackage)下载插件包，如图：
 ![image](./images/image21.png)
 
 注：如果出现文件名称冲突，请手动修改文件名与类名，只要确保调用时一致就可以。
