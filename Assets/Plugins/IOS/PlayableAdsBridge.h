@@ -9,7 +9,9 @@
 #import <PlayableAds/PlayableAds.h>
 
 @interface Delegate : NSObject<PlayableAdsDelegate>
-@property (nonatomic) PlayableAds *pAd;
+@property (nonatomic) NSMutableDictionary *pAds;
 @property (nonatomic) NSString *gameObjName;
+@property (nonatomic) NSString *appId;
+@property (nonatomic) Boolean autoload;
 @end
 

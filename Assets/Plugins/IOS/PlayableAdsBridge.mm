@@ -6,7 +6,7 @@
 //
 
 #import "PlayableAdsBridge.h"
-
+static Delegate* delegateObj;
 @implementation Delegate
 
 - (id) init
@@ -20,7 +20,7 @@
         printf("pa=> playableAdsDidRewardUser gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdsDidRewardUser", "");
+    UnitySendMessage(gameObject, "PlayableAdsDidRewardUser", [[self getUnitIdFrom:ads] UTF8String]);
 }
 
 /// Tells the delegate that succeeded to load ad.
@@ -30,7 +30,7 @@
         printf("pa=> playableAdsDidLoad gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdsDidLoad", "");
+    UnitySendMessage(gameObject, "PlayableAdsDidLoad", [[self getUnitIdFrom:ads] UTF8String]);
 }
 
 /// Tells the delegate that failed to load ad.
@@ -108,47 +108,103 @@
     UnitySendMessage(gameObject, "PlayableAdsDidClick", cString);
 }
 
-@end
+- (NSString*)getUnitIdFrom:(PlayableAds*)ad{
+    NSString* result = @"";
+    if (!delegateObj.pAds){
+        return result;
+    }
+    __block NSString* theKey = @"";
+    [delegateObj.pAds enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if(obj == ad){
+            theKey = key;
+        }
+    }];
+    if (theKey.length > 0){
+        NSArray* kArray = [theKey componentsSeparatedByString: delegateObj.appId];
+        if ([kArray count] == 2){
+            result = kArray[1];
+        }
+    }
+    return result;
+}
 
-static Delegate* delegateObj;
+@end
 
 extern "C"
 {
-    void _loadAd(const char* gameObj, const char* appId, const char* adUnitId){
+    void _init(const char* gameObj, const char* appId) {
         if (delegateObj == nil){
             delegateObj = [[Delegate alloc]init];
-        }
-        delegateObj.pAd = [[PlayableAds alloc]
-                           initWithAdUnitID:[NSString stringWithUTF8String:adUnitId]
-                           appID:[NSString stringWithUTF8String:appId]];
-        delegateObj.pAd.delegate = delegateObj;
-        delegateObj.gameObjName = [NSString stringWithUTF8String: gameObj];
-        [delegateObj.pAd loadAd];
-    }
-    
-    void _showAd(const char* appId, const char* adUnitId){
-        if (delegateObj != nil && delegateObj.pAd != nil){
-            [delegateObj.pAd present];
+            delegateObj.pAds = [[NSMutableDictionary alloc] init];
+            delegateObj.appId = [NSString stringWithUTF8String:appId];
+            delegateObj.gameObjName = [NSString stringWithUTF8String:gameObj];
+            delegateObj.autoload = true;
         }
     }
     
-    Boolean _isReady(){
-        if(delegateObj != nil && delegateObj.pAd != nil){
-            return [delegateObj.pAd isReady];
+    NSString* unitId2adKey(const char* unitId){
+        if (delegateObj == nil || !delegateObj.appId){
+            return @"";
         }
-        return NO;
+        return [NSString stringWithFormat:@"%@%s", delegateObj.appId, unitId];
+    }
+    
+    PlayableAds* getAd(const char* unitId){
+        if (delegateObj == nil || [delegateObj.pAds count] < 1){
+            return nil;
+        }
+        return [delegateObj.pAds objectForKey:unitId2adKey(unitId)];
+    }
+    
+    bool addAd(const char* unitId){
+        if (delegateObj == nil || !delegateObj.pAds){
+            return false;
+        }
+        PlayableAds* pa = [[PlayableAds alloc]
+                           initWithAdUnitID:[NSString stringWithUTF8String:unitId]
+                           appID:delegateObj.appId];
+        pa.delegate = delegateObj;
+        pa.autoLoad = delegateObj.autoload;
+        [delegateObj.pAds setObject:pa forKey:unitId2adKey(unitId)];
+        return true;
+    }
+    
+    void _loadAd(const char* adUnitId){
+        if (!getAd(adUnitId) && !addAd(adUnitId)){
+            return;
+        }
+        [getAd(adUnitId) loadAd];
+    }
+    
+    bool _isReady(const char* adUnitId){
+        PlayableAds* pa = getAd(adUnitId);
+        if (!pa){
+            return false;
+        }
+        return [pa isReady];
+    }
+    
+    void _showAd(const char* adUnitId){
+        if (_isReady(adUnitId)){
+            [getAd(adUnitId) present];
+        }else{
+            NSLog(@"ZPLAYAds not ready");
+        }
     }
     
     void _autoload(const bool autoload) {
-        if(delegateObj != nil && delegateObj.pAd != nil){
-            delegateObj.pAd.autoLoad = autoload;
+        delegateObj.autoload = autoload;
+        if (!delegateObj.pAds){
+            return;
         }
+        [delegateObj.pAds enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            PlayableAds* pa = obj;
+            pa.autoLoad = autoload;
+        }];
     }
     
     Boolean _isAutoload(){
-        if(delegateObj != nil && delegateObj.pAd != nil){
-            return delegateObj.pAd.autoLoad;
-        }
-        return NO;
+        return delegateObj.autoload;
     }
+    
 }

@@ -8,13 +8,16 @@ namespace PlayableAds.API {
 	public class PlayableAdsBridge
 	{
 		[DllImport("__Internal")]
-		private static extern void _loadAd(string gameObjName, string appId, string adUnitId);
+		private static extern void _init(string gameObjName, string appId);
 
 		[DllImport("__Internal")]
-		private static extern void _showAd();
+		private static extern void _loadAd(string adUnitId);
 
 		[DllImport("__Internal")]
-		private static extern bool _isReady();
+		private static extern void _showAd(string adUnitId);
+
+		[DllImport("__Internal")]
+		private static extern bool _isReady(string adUnitId);
 
 		[DllImport("__Internal")]
 		private static extern void _autoload(bool autoload);
@@ -24,20 +27,24 @@ namespace PlayableAds.API {
 
 		private static bool isAutoload = true;
 
-		public static void RequestAd(string gameObjName, string appId, string adUnitId)
+		public static void Init(string gameObjName, string appId){
+			_init(gameObjName, appId);
+		}
+
+		public static void RequestAd(string adUnitId)
 		{
-			_loadAd(gameObjName, appId, adUnitId);
+			_loadAd(adUnitId);
 			_autoload(isAutoload);
 		}
 
-		public static void PresentAd()
+		public static void PresentAd(string adUnitId)
 		{
-			_showAd();
+			_showAd(adUnitId);
 		}
 
-		public static bool IsReady()
+		public static bool IsReady(string adUnitId)
 		{
-			return _isReady();
+			return _isReady(adUnitId);
 		}
 
 		public static void Autoload(bool autoload)
