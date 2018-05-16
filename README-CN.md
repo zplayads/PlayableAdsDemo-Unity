@@ -62,20 +62,23 @@ c. 如果您只需要Android，点击[此处](./PlayableAds-Android.unitypackage
 
 ### 4. 添加代码
 #### a. 添加iOS代码
+-  初始化广告
+    ```c#
+    // APP_ID为你在ZPLAY Ads平台申请的应用ID
+    PlayableAdsBridge.Init(gameObjectName, APP_ID);
+    ```
 -  请求广告
     ``` c#
-    // APP_ID为你在ZPLAY Ads平台申请的应用ID
     // AD_UNIT_ID为你在ZPLAY Ads平台申请的广告位ID
-
-    PlayableAdsBridge.RequestAd(gameObjectName, APP_ID, AD_UNIT_ID);
+    PlayableAdsBridge.RequestAd(AD_UNIT_ID);
     ```
 -  判断广告是否加载完成
     ``` c#
-    PlayableAdsBridge.IsReady();
+    PlayableAdsBridge.IsReady(AD_UNIT_ID);
     ```
 -  展示广告
     ``` c#
-    PlayableAdsBridge.PresentAd();
+    PlayableAdsBridge.PresentAd(AD_UNIT_ID);
     ```
 -  设置自动加载下一条广告
    ``` c#
