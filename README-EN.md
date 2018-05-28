@@ -71,7 +71,6 @@ Note: If there's a file name conflict, you can modify the file name or the class
     PlayableAdsBridge.Init(gameObjectName, APP_ID);
     ```
 
-    ​
 
 -  Request Ads
 
@@ -140,7 +139,7 @@ Note: If there's a file name conflict, you can modify the file name or the class
     }
     ```
 
-##### b. Add Android Code
+#### b. Add Android Code
 -  Initialize SDK
     ``` c#
     // APP_ID: An ID for your App, obtained when setting up the App for monetization within your account on the ZPLAY Ads website.
