@@ -67,30 +67,30 @@ c. 如果您只需要Android，点击[此处](./PlayableAds-Android.unitypackage
     // APP_ID为你在ZPLAY Ads平台申请的应用ID
     PlayableAdsBridge.Init(gameObjectName, APP_ID);
     ```
--  请求广告
+- 请求广告
     ``` c#
     // AD_UNIT_ID为你在ZPLAY Ads平台申请的广告位ID
     PlayableAdsBridge.RequestAd(AD_UNIT_ID);
     ```
--  判断广告是否加载完成
+- 判断广告是否加载完成
     ``` c#
     PlayableAdsBridge.IsReady(AD_UNIT_ID);
     ```
--  展示广告
+- 展示广告
     ``` c#
     PlayableAdsBridge.PresentAd(AD_UNIT_ID);
     ```
--  设置自动加载下一条广告
+- 设置自动加载下一条广告
    ``` c#
    PlayableAdsBridge.Autoload(bool);
    ```
    默认为自动加载，即经首次请求广告后，后续SDK会自动加载下一条广告，不需要再次调用请求方法。
 
--  判断广告是否自动加载下一条广告
+- 判断广告是否自动加载下一条广告
    ``` c#
    PlayableAdsBridge.IsAutoload();
    ```
--  自定义事件
+- 自定义事件
     ```c#
     // 位置：Demo/Assets/Scripts/PlayableAdsBridge.IPlayableListener
     interface IPlayableListener{
@@ -126,24 +126,24 @@ c. 如果您只需要Android，点击[此处](./PlayableAds-Android.unitypackage
     // APP_ID为你在ZPLAY Ads平台申请的应用ID
     PlayableAdsAdapter.Init(gameObjectName, APP_ID);
     ```
--  设置自动请求
+- 设置自动请求
     ``` c#
     // 自动请求下个广告
     PlayableAdsAdapter.AutoloadAd(bool);
     ```
--  请求广告
+- 请求广告
     ``` c#
     PlayableAdsAdapter.RequestAd(AD_UNIT_ID);
     ```
--  判断广告是否加载完成
+- 判断广告是否加载完成
     ``` c#
     PlayableAdsAdapter.IsReady(AD_UNIT_ID)
     ```
--  展示广告
+- 展示广告
     ``` c#
     PlayableAdsAdapter.PresentAd(AD_UNIT_ID)
     ```
--  自定义事件
+- 自定义事件
     ``` c#
     // 位置：Demo/Assets/Scripts/PlayableAdsAdapter.IPlayableAdapterListener
     interface IPlayableAdapterListener{
@@ -182,7 +182,7 @@ c. 如果您只需要Android，点击[此处](./PlayableAds-Android.unitypackage
 
 ### 3. 安装可玩sdk
 ```
-pod install
+pod install --repo-update
 ```
 ![image](./images/image16.png)
 看到红线圈出的部分代表可玩广告SDK安装成功，此时可以运行项目查看运行效果了，步骤如下
