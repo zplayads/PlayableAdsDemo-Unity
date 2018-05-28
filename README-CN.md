@@ -50,7 +50,7 @@ Android与iOS使用同一个插件包，导入步骤为Assets-> Import Package -
 ### 3. 按需导入相关文件
 a. 如果您既需要Android又需要iOS，导入全部文件（其中包括iOS插件与Android插件），如图：
 ![image](./images/image05.png)
-注意：示例中android-support-v4.jar与play-services-xxx.aar为可选导入项，如果这些文件与您项目中的文件有冲突，请放心地删除这些文件。
+注意：示例中android-support-v4.jar与play-services-xxx.aar为可选导入项，如果这些文件与您项目中的文件有冲突，请放心地删除这些文件。
 
 b. 如果您只需要iOS，点击[此处](./PlayableAds-iOS.unitypackage)下载插件包，如图：
 ![image](./images/image20.png)
