@@ -63,24 +63,54 @@ Note: If there's a file name conflict, you can modify the file name or the class
 
 ### 4. Add Code
 #### a. Add iOS Code
--  Request Ads
-    ``` c#
-    // APP_ID: An ID for your App, obtained when setting up the App for monetization within your account on the ZPLAY Ads website.
-    // AD_UNIT_ID: An ID for a specific ad placement within your App, as generated for your Apps within your account on the ZPLAY Ads website.
 
-    PlayableAdsBridge.RequestAd(gameObjectName, APP_ID, AD_UNIT_ID);
+-  Initialize Ads
+
+    ```C#
+    // APP_ID: An ID for your App, obtained when setting up the App for monetization within your account on the ZPLAY Ads website.
+    PlayableAdsBridge.Init(gameObjectName, APP_ID);
     ```
+
+    ​
+
+-  Request Ads
+
+    ``` c#
+    // AD_UNIT_ID: An ID for a specific ad placement within your App, as generated for your Apps within your account on the ZPLAY Ads website.
+    PlayableAdsBridge.RequestAd(AD_UNIT_ID);
+    ```
+
 - Ad ready for display?
+
     ``` c#
     // You can judge the availability of an ad by this callback. Then you’ll be able to manage your game’s settings according to the ad being ready or not.
 
-    PlayableAdsBridge.IsReady();
+    PlayableAdsBridge.IsReady(AD_UNIT_ID);
     ```
+
 - Show Ad
     ``` c#
-    PlayableAdsBridge.PresentAd();
+    PlayableAdsBridge.PresentAd(AD_UNIT_ID);
     ```
+
+- Set to automatically load next ad
+
+    ```c#
+    PlayableAdsBridge.Autoload(bool);// default is true
+    ```
+
+    The default is automatic loading, that is, after the first request for an ad, the subsequent SDK will automatically load the next ad and does not need to call the request method again.
+
+- Does the ad automatically load the next ad?
+
+    ```c#
+    PlayableAdsBridge.IsAutoload();
+    ```
+
+    ​
+
 - Custom Event
+
     ```c#
     // Place: Demo/Assets/Scripts/PlayableAdsBridge.IPlayableListener
     interface IPlayableListener{
@@ -167,9 +197,7 @@ Note: If there's a file name conflict, you can modify the file name or the class
 
 ### 2. A Podfile will be generated after the initialization. Add ZPLAY Ads sdk in this file as following:
 
-![image](./images/image15.png)
-
-This file may looks different in different projects. Just make sure to add```pod 'PlayableAds'```into Podfile. 
+This file may looks different in different projects. Just make sure to add```pod 'PlayableAds', '~>2.0.6'```into Podfile. 
 Please Note that the OS requirement of ZPLAY Ads is iOS 8.0.
 
 ### 3. Install ZPLAY Ads sdk
