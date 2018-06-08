@@ -1,6 +1,0 @@
-osx_image: xcode9.1
-rvm: 2.2
-
-env:
-notifications:
-   slack: yumimobi:wCaD46mZfHIPfiI6guogLeWB
