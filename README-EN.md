@@ -53,10 +53,10 @@ If a folder with the same name has already in your project, the files will be co
 a. If you need both Android and iOS, you need to import all files(including iOS plugin and Android plugin), as shown:
 ![image](./images/image05.png)
 
-b. If you only need iOS, just import iOS plugin, as shown:
+b. If you only need iOS, just import files as shown:
 ![image](./images/image20.png)
 
-c. If you only need Android, just import Android plugin, as shown:
+c. If you only need Android, just import files as shown:
 ![image](./images/image21.png)
 
 Note: If there's a file name conflict, you can modify the file name or the class name. Just make sure it’s in correspondence with what you will call.
@@ -113,7 +113,7 @@ Note: If there's a file name conflict, you can modify the file name or the class
     ```c#
     // Place: Demo/Assets/Scripts/PlayableAdsBridge.IPlayableListener
     interface IPlayableListener{
-      	// Reward
+        // Reward
         void PlayableAdsDidRewardUser(string msg);
 
         // ad has been loaded.

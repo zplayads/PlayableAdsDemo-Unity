@@ -52,10 +52,10 @@ a. 如果您既需要Android又需要iOS，导入全部文件（其中包括iOS�
 ![image](./images/image05.png)
 注意：示例中android-support-v4.jar与play-services-xxx.aar为可选导入项，如果这些文件与您项目中的文件有冲突，请放心地删除这些文件。
 
-b. 如果您只需要iOS，点击[此处](./PlayableAds-iOS.unitypackage)下载插件包，如图：
+b. 如果您只需要iOS，请勾选iOS所需的文件，如图：
 ![image](./images/image20.png)
 
-c. 如果您只需要Android，点击[此处](./PlayableAds-Android.unitypackage)下载插件包，如图：
+c. 如果您只需要Android，请勾选Android所需的文件，如图：
 ![image](./images/image21.png)
 
 注：如果出现文件名称冲突，请手动修改文件名与类名，只要确保调用时一致就可以。
