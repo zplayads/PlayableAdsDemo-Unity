@@ -177,15 +177,13 @@ c. 如果您只需要Android，请勾选Android所需的文件，如图：
 ### 1. 进入Unity导出的xcode项目根目录下，初始化pod，如示例中的iOSProj目录
 ![image](./images/image14.png)
 ### 2. 初始化pod后会生成Podfile文件，在此文件下添加可玩sdk
-确保将```pod 'PlayableAds', '~>2.0.6'```添加到Podfile中即可。
+确保将```pod 'PlayableAds', '~>2.0.7'```添加到Podfile中即可。
 注意：可玩广告SDK最低支持ios8.0，
 
 ### 3. 安装可玩sdk
 ```
 pod install --repo-update
 ```
-![image](./images/image16.png)
-看到红线圈出的部分代表可玩广告SDK安装成功，此时可以运行项目查看运行效果了，步骤如下
 ### 4. 验证SDK是否安装成功
 双击打开.xcworkspace文件，在xcode中安装应用到iPhone
 ![image](./images/image17.png)

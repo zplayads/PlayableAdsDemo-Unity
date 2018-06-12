@@ -72,7 +72,7 @@ Note: If there's a file name conflict, you can modify the file name or the class
     ```
 
 
--  Request Ads
+- Request Ads
 
     ``` c#
     // AD_UNIT_ID: An ID for a specific ad placement within your App, as generated for your Apps within your account on the ZPLAY Ads website.
@@ -196,17 +196,13 @@ Note: If there's a file name conflict, you can modify the file name or the class
 
 ### 2. A Podfile will be generated after the initialization. Add ZPLAY Ads sdk in this file as following:
 
-This file may looks different in different projects. Just make sure to add```pod 'PlayableAds', '~>2.0.6'```into Podfile. 
+This file may looks different in different projects. Just make sure to add```pod 'PlayableAds', '~>2.0.7'```into Podfile. 
 Please Note that the OS requirement of ZPLAY Ads is iOS 8.0.
 
 ### 3. Install ZPLAY Ads sdk
 ```
 pod install --repo-update
 ```
-![image](./images/image16.png)
-
-When you see the messaged marked with red line, it means the SDK has been installed successfully. You can run the project to check it. 
-
 ### 4. Verify if the SDK is installed
 Open  **.xcworkspace** , and install the app to iPhone
 
