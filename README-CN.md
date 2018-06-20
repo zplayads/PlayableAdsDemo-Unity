@@ -171,13 +171,6 @@ c. 如果您只需要Android，请勾选Android所需的文件，如图：
 | Android | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
 | iOS     | A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
 
-### 5. 预览demo
-完整流程如下：
-* 点击“Request”开始请求广告
-* 广告加载完成后提示“PlayableAdsDidLoad”
-* 此时点击“Present”展示广告
-* 广告展示完成后，点击“X”关闭广告，此时接收到“PlayableAdsDidRewardUser”消息。
 
-![image](./images/image18.jpg)
 
 接入过程中若有疑问，请参考示例程序或发送邮件至service@zplayads.com

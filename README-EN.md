@@ -186,14 +186,3 @@ Note: If there's a file name conflict, you can modify the file name or the class
 | ------- | ------------------------------------ | ------------------------------------ |
 | Android | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
 | iOS     | A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
-
-### 5. Preview the demo
-
-The whole workflow is:
-* Tap “Request” to request for ads; 
-* "PlayableAdsDidLoad" will be shown when an ad is loaded; 
-* Tap “Present” to show the ad; 
-* Tap on "X" to close it after it’s over. 
-* A "PlayableAdsDidRewardUser" message will be received.
-
-![image](./images/image19.jpg)
