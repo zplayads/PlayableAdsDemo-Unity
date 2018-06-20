@@ -2,7 +2,6 @@
 1. General Introduction
 2. About Demo
 3. Importing PlayableAds.unitypackage
-4. Install ZPLAY Ads SDK
 
 
 ## General Introduction
@@ -187,28 +186,6 @@ Note: If there's a file name conflict, you can modify the file name or the class
 | ------- | ------------------------------------ | ------------------------------------ |
 | Android | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
 | iOS     | A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
-
-## Install ZPLAY Ads SDK
-
-### 1. Enter the root folder of the xcode project exported from unity. And initialize pod here, in our example it’s iOSProj folder:
-
-![image](./images/image14.png)
-
-### 2. A Podfile will be generated after the initialization. Add ZPLAY Ads sdk in this file as following:
-
-This file may looks different in different projects. Just make sure to add```pod 'PlayableAds', '~>2.0.7'```into Podfile. 
-Please Note that the OS requirement of ZPLAY Ads is iOS 8.0.
-
-### 3. Install ZPLAY Ads sdk
-```
-pod install --repo-update
-```
-### 4. Verify if the SDK is installed
-Open  **.xcworkspace** , and install the app to iPhone
-
-![image](./images/image17.png)
-
-Note that it's **.xcworkspace** file here, not **.xcodeproj**
 
 ### 5. Preview the demo
 

@@ -1,9 +1,8 @@
 
 ## PlayableAdsSDK for Unity
-  1. 概述
-  2. Demo简介
-  3. 导入PlayableAds.unitypackage
-  4. 安装可玩SDK
+    1. 概述
+    2. Demo简介
+    3. 导入PlayableAds.unitypackage
 
 ## 概述
     1. 面向人群，本产品主要面向需要在Unity产品中接入可玩广告SDK的开发者
@@ -172,22 +171,6 @@ c. 如果您只需要Android，请勾选Android所需的文件，如图：
 | Android | 5C5419C7-A2DE-88BC-A311-C3E7A646F6AF | 3FBEFA05-3A8B-2122-24C7-A87D0BC9FEEC |
 | iOS     | A650AB0D-7BFC-2A81-3066-D3170947C3DA | BAE5DAAC-04A2-2591-D5B0-38FA846E45E7 |
 
-## 安装可玩SDK
-以下为iOS 可玩SDK的安装步骤，Android可玩SDK已经包含在插件包里了，不需要额外安装。
-### 1. 进入Unity导出的xcode项目根目录下，初始化pod，如示例中的iOSProj目录
-![image](./images/image14.png)
-### 2. 初始化pod后会生成Podfile文件，在此文件下添加可玩sdk
-确保将```pod 'PlayableAds', '~>2.0.7'```添加到Podfile中即可。
-注意：可玩广告SDK最低支持ios8.0，
-
-### 3. 安装可玩sdk
-```
-pod install --repo-update
-```
-### 4. 验证SDK是否安装成功
-双击打开.xcworkspace文件，在xcode中安装应用到iPhone
-![image](./images/image17.png)
-注意：此处打开的是 **.xcworkspace** 文件，而非.xcodeproj
 ### 5. 预览demo
 完整流程如下：
 * 点击“Request”开始请求广告
