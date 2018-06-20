@@ -25,6 +25,9 @@ namespace PlayableAds.API {
 		[DllImport("__Internal")]
 		private static extern bool _isAutoload();
 
+		[DllImport("__Internal")]
+		private static extern bool _setChannelId(string channelId);
+
 		private static bool isAutoload = true;
 
 		public static void Init(string gameObjName, string appId){
@@ -55,6 +58,11 @@ namespace PlayableAds.API {
 
 		public static bool IsAutoload(){
 			return _isAutoload();
+		}
+
+		public static void ChannelId(string channelId)
+		{
+			_setChannelId(channelId);
 		}
 
 	}

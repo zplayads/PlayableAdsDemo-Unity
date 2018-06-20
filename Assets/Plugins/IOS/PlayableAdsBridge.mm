@@ -7,6 +7,7 @@
 
 #import "PlayableAdsBridge.h"
 static Delegate* delegateObj;
+static NSString* channel;
 @implementation Delegate
 
 - (id) init
@@ -173,7 +174,9 @@ extern "C"
         if (!getAd(adUnitId) && !addAd(adUnitId)){
             return;
         }
-        [getAd(adUnitId) loadAd];
+        PlayableAds* pa = getAd(adUnitId);
+        pa.channelId = channel;
+        [pa loadAd];
     }
     
     bool _isReady(const char* adUnitId){
@@ -203,6 +206,10 @@ extern "C"
         }];
     }
     
+    void _setChannelId(const char* channelId) {
+        channel = [NSString stringWithFormat:@"%s", channelId];
+    }
+
     Boolean _isAutoload(){
         return delegateObj.autoload;
     }
