@@ -89,6 +89,12 @@ c. 如果您只需要Android，请勾选Android所需的文件，如图：
    ``` c#
    PlayableAdsBridge.IsAutoload();
    ```
+
+- 设置渠道号
+  ``` c#
+  PlayableAdsBridge.ChannelId(string);
+  ```
+
 - 自定义事件
     ```c#
     // 位置：Demo/Assets/Scripts/PlayableAdsBridge.IPlayableListener
@@ -142,6 +148,11 @@ c. 如果您只需要Android，请勾选Android所需的文件，如图：
     ``` c#
     PlayableAdsAdapter.PresentAd(AD_UNIT_ID)
     ```
+- 设置渠道号
+    ``` c#
+    PlayableAdsAdapter.ChannelId(string);
+    ```
+
 - 自定义事件
     ``` c#
     // 位置：Demo/Assets/Scripts/PlayableAdsAdapter.IPlayableAdapterListener

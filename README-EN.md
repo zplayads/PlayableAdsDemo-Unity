@@ -105,7 +105,10 @@ Note: If there's a file name conflict, you can modify the file name or the class
     PlayableAdsBridge.IsAutoload();
     ```
 
-    ​
+- Set the channel id
+  ``` c#
+  PlayableAdsBridge.ChannelId(string);
+  ```
 
 - Custom Event
 
@@ -157,6 +160,10 @@ Note: If there's a file name conflict, you can modify the file name or the class
 - Show Ad
     ``` c#
     PlayableAdsAdapter.PresentAd(AD_UNIT_ID)
+    ```
+- Set the channel id
+    ``` c#
+    PlayableAdsAdapter.ChannelId(string);
     ```
 - Custom Event
     ``` c#
