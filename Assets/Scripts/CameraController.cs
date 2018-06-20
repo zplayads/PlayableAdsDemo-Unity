@@ -37,6 +37,7 @@ public class CameraController : MonoBehaviour, IPlayableListener, IPlayableAdapt
 
 		#if UNITY_ANDROID
 		PlayableAdsAdapter.Init(gameObject.name, androidDemoAppId);
+		PlayableAdsAdapter.ChannelId("channel_id");
 		#endif
 	}
 
