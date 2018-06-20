@@ -33,6 +33,7 @@ public class CameraController : MonoBehaviour, IPlayableListener, IPlayableAdapt
 
 		#if UNITY_IOS
 		PlayableAdsBridge.Init(gameObject.name, iOSDemoAppId);
+		PlayableAdsBridge.ChannelId("channel_id");
 		#endif
 
 		#if UNITY_ANDROID
