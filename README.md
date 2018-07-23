@@ -2,6 +2,6 @@
 
 ### [SDK Integration](/README-EN.md)
 
-### PlayableAdsDemo-iOS(/PlayableAdsDemo-iOS)
+### [PlayableAdsDemo-iOS](https://github.com/zplayads/PlayableAdsDemo-iOS)
 
-### PlayableAdsDemo-android(/PlayableAdsDemo-android)
+### [PlayableAdsDemo-android](https://github.com/zplayads/PlayableAdsDemo-android)
