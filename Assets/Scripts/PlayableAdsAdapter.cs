@@ -64,6 +64,16 @@ namespace PlayableAds.API {
 				return sec.CallStatic<bool>("canPresentAd", adUnitId);
 			}
 		}
+
+		public static void ChannelId(string channelId)
+		{
+			if(objectName == null) {
+				throw new MissingReferenceException("havn't set GameObject name to PlayableAdsAdapter");
+			}
+			using(AndroidJavaClass sec = new AndroidJavaClass("com.zplay.playable.playableadsplugin.PlayableAdsAdapter")) {
+				sec.CallStatic("setChannelId", channelId);
+			}
+		}
 	}
 
 	public interface IPlayableAdapterListener {
@@ -73,6 +83,8 @@ namespace PlayableAds.API {
 		void OnLoadFailed(string msg);
 
 		void PlayableAdsIncentive(string msg);
+
+		void PlayableAdsInstallButtonClicked(string msg);
 
 		void PlayableAdsMessage(string msg);
 	}
