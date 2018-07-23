@@ -6,7 +6,8 @@
 //
 
 #import "PlayableAdsBridge.h"
-
+static Delegate* delegateObj;
+static NSString* channel;
 @implementation Delegate
 
 - (id) init
@@ -20,7 +21,7 @@
         printf("pa=> playableAdsDidRewardUser gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdsDidRewardUser", "");
+    UnitySendMessage(gameObject, "PlayableAdsDidRewardUser", [[self getUnitIdFrom:ads] UTF8String]);
 }
 
 /// Tells the delegate that succeeded to load ad.
@@ -30,7 +31,7 @@
         printf("pa=> playableAdsDidLoad gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdsDidLoad", "");
+    UnitySendMessage(gameObject, "PlayableAdsDidLoad", [[self getUnitIdFrom:ads] UTF8String]);
 }
 
 /// Tells the delegate that failed to load ad.
@@ -48,30 +49,6 @@
     UnitySendMessage(gameObject, "DidFailToLoadWithError", cString);
 }
 
-/// Tells the delegate that ad will be presented on the screen.
-- (void)playableAdsWillPresentScreen:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsWillPresentScreen";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsWillPresentScreen gameObject nil");
-        return;
-    }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
-/// Tells the delegate that ad did present on the screen.
-- (void)playableAdsDidPresentScreen:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsDidPresentScreen";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsDidPresentScreen gameObject nil");
-        return;
-    }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
 /// Tells the delegate that user starts playing the ad.
 - (void)playableAdsDidStartPlaying:(PlayableAds *)ads{
     NSString *inStr = @"playableAdsDidStartPlaying";
@@ -81,7 +58,7 @@
         printf("pa=> playableAdsDidStartPlaying gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidStartPlaying", cString);
 }
 
 /// Tells the delegate that the ad is being fully played.
@@ -93,7 +70,7 @@
         printf("pa=> playableAdsDidEndPlaying gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidEndPlaying", cString);
 }
 
 /// Tells the delegate that the landing page did present on the screen.
@@ -105,19 +82,7 @@
         printf("pa=> playableAdsDidPresentLandingPage gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
-/// Tells the delegate that the ad will be animated off the screen.
-- (void)playableAdsWillDismissScreen:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsWillDismissScreen";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsWillDismissScreen gameObject nil");
-        return;
-    }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidPresentLandingPage", cString);
 }
 
 /// Tells the delegate that the ad did animate off the screen.
@@ -129,86 +94,124 @@
         printf("pa=> playableAdsDidDismissScreen gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidDismissScreen", cString);
 }
 
-/// Tells the delegate that the ad is clicked from landing page.
-- (void)playableAdsDidClickFromLandingPage:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsDidClickFromLandingPage";
+/// Tells the delegate that the ad is clicked
+- (void)playableAdsDidClick:(PlayableAds *)ads{
+    NSString *inStr = @"playableAdsDidClick";
     const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
     const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
     if (!gameObject){
-        printf("pa=> playableAdsDidClickFromLandingPage gameObject nil");
+        printf("pa=> playableAdsDidClick gameObject nil");
         return;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    UnitySendMessage(gameObject, "PlayableAdsDidClick", cString);
 }
 
-/// Tells the delegate that the ad is clicked from video page.
-- (void)playableAdsDidClickFromVideoPage:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsDidClickFromVideoPage";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsDidClickFromVideoPage gameObject nil");
-        return;
+- (NSString*)getUnitIdFrom:(PlayableAds*)ad{
+    NSString* result = @"";
+    if (!delegateObj.pAds){
+        return result;
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
-}
-
-/// Tells the delegate that it will leaven the application, most likely caused by user click.
-- (void)playableAdsWillLeaveApplication:(PlayableAds *)ads{
-    NSString *inStr = @"playableAdsWillLeaveApplication";
-    const char *cString = [inStr cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *gameObject = [_gameObjName cStringUsingEncoding:NSUTF8StringEncoding];
-    if (!gameObject){
-        printf("pa=> playableAdsWillLeaveApplication gameObject nil");
-        return;
+    __block NSString* theKey = @"";
+    [delegateObj.pAds enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        if(obj == ad){
+            theKey = key;
+        }
+    }];
+    if (theKey.length > 0){
+        NSArray* kArray = [theKey componentsSeparatedByString: delegateObj.appId];
+        if ([kArray count] == 2){
+            result = kArray[1];
+        }
     }
-    UnitySendMessage(gameObject, "PlayableAdFeedBack", cString);
+    return result;
 }
 
 @end
 
-static Delegate* delegateObj;
-
 extern "C"
 {
-    void _loadAd(const char* gameObj, const char* appId, const char* adUnitId){
+    void _init(const char* gameObj, const char* appId) {
         if (delegateObj == nil){
             delegateObj = [[Delegate alloc]init];
-        }
-        delegateObj.pAd = [[PlayableAds alloc]
-                           initWithAdUnitID:[NSString stringWithUTF8String:adUnitId]
-                           appID:[NSString stringWithUTF8String:appId]];
-        delegateObj.pAd.delegate = delegateObj;
-        delegateObj.gameObjName = [NSString stringWithUTF8String: gameObj];
-        [delegateObj.pAd loadAd];
-    }
-    
-    void _showAd(const char* appId, const char* adUnitId){
-        if (delegateObj != nil && delegateObj.pAd != nil){
-            [delegateObj.pAd present];
+            delegateObj.pAds = [[NSMutableDictionary alloc] init];
+            delegateObj.appId = [NSString stringWithUTF8String:appId];
+            delegateObj.gameObjName = [NSString stringWithUTF8String:gameObj];
+            delegateObj.autoload = true;
         }
     }
     
-    Boolean _isReady(){
-        if(delegateObj != nil && delegateObj.pAd != nil){
-            return [delegateObj.pAd isReady];
+    NSString* unitId2adKey(const char* unitId){
+        if (delegateObj == nil || !delegateObj.appId){
+            return @"";
         }
-        return NO;
+        return [NSString stringWithFormat:@"%@%s", delegateObj.appId, unitId];
+    }
+    
+    PlayableAds* getAd(const char* unitId){
+        if (delegateObj == nil || [delegateObj.pAds count] < 1){
+            return nil;
+        }
+        return [delegateObj.pAds objectForKey:unitId2adKey(unitId)];
+    }
+    
+    bool addAd(const char* unitId){
+        if (delegateObj == nil || !delegateObj.pAds){
+            return false;
+        }
+        PlayableAds* pa = [[PlayableAds alloc]
+                           initWithAdUnitID:[NSString stringWithUTF8String:unitId]
+                           appID:delegateObj.appId];
+        pa.delegate = delegateObj;
+        pa.autoLoad = delegateObj.autoload;
+        [delegateObj.pAds setObject:pa forKey:unitId2adKey(unitId)];
+        return true;
+    }
+    
+    void _loadAd(const char* adUnitId){
+        if (!getAd(adUnitId) && !addAd(adUnitId)){
+            return;
+        }
+        PlayableAds* pa = getAd(adUnitId);
+        pa.channelId = channel;
+        [pa loadAd];
+    }
+    
+    bool _isReady(const char* adUnitId){
+        PlayableAds* pa = getAd(adUnitId);
+        if (!pa){
+            return false;
+        }
+        return [pa isReady];
+    }
+    
+    void _showAd(const char* adUnitId){
+        if (_isReady(adUnitId)){
+            [getAd(adUnitId) present];
+        }else{
+            NSLog(@"ZPLAYAds not ready");
+        }
     }
     
     void _autoload(const bool autoload) {
-        if(delegateObj != nil && delegateObj.pAd != nil){
-            delegateObj.pAd.autoLoad = autoload;
+        delegateObj.autoload = autoload;
+        if (!delegateObj.pAds){
+            return;
         }
+        [delegateObj.pAds enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            PlayableAds* pa = obj;
+            pa.autoLoad = autoload;
+        }];
     }
     
-    Boolean _isAutoload(){
-        if(delegateObj != nil && delegateObj.pAd != nil){
-            return delegateObj.pAd.autoLoad;
-        }
-        return NO;
+    void _setChannelId(const char* channelId) {
+        channel = [NSString stringWithFormat:@"%s", channelId];
     }
+
+    Boolean _isAutoload(){
+        return delegateObj.autoload;
+    }
+    
 }

@@ -10,7 +10,8 @@
 
   <application
     android:label="Playable Demo">
-      <activity android:name="com.zplay.playable.playableadsplugin.MainActivity" 
+      <activity android:name="com.zplay.playable.playableadsplugin.SimpleActivity"
+                android:launchMode="standard"
                 android:screenOrientation="portrait">
         <intent-filter>
           <action android:name="android.intent.action.MAIN" />
@@ -20,7 +21,7 @@
 
         <meta-data
             android:name="unityplayer.UnityActivity"
-            android:value="true" />
+            android:value="false" />
       </activity>
     </application>
 
