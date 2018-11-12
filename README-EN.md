@@ -23,7 +23,7 @@
         unity: version 2017.1.1f1 Personal
 
 ## About Demo
-Download the demo’s source code, and import it from unity. Then open scene “SampleGame.unity”
+Download the demo’s source code, and import it from unity. Then open scene “SampleScene.unity”
 
 ### 1. The main interface and basic settings are as follows
 ![image](./images/image01.png)
